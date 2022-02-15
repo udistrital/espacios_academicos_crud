@@ -9,7 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [
     MongooseModule.forRoot(`mongodb://${environment.USER}:${environment.PASS}@`+
     `${environment.HOST}:${environment.PORT}/${environment.DB}?authSource=${environment.AUTH_DB}`, {
-      //useFindAndModify: false
+      useFindAndModify: false
     }),
     EspacioAcademicoModule
   ],
