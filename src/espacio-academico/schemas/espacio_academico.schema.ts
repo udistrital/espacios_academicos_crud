@@ -26,7 +26,7 @@ export class Espacio_academico extends Document {
     distribucion_horas
 
     @Prop({required: true})
-    clasificacion_espacio_id: string
+    clasificacion_espacio_id: number    //pk sql
 
     @Prop({type: Object})
     espacios_requeridos
@@ -38,7 +38,7 @@ export class Espacio_academico extends Document {
     inscritos: number
     
     @Prop({required: true})
-    docente_id: string
+    docente_id: number  //pk sql
     
     @Prop({required: true})
     horario_id: string

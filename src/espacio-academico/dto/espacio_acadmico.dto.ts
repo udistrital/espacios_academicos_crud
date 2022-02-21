@@ -2,6 +2,8 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class Espacio_academicoDto{
 
+    _id: string
+
     @ApiProperty()
     readonly nombre: string;
 
@@ -24,7 +26,7 @@ export class Espacio_academicoDto{
     readonly distribucion_horas: Object;
 
     @ApiProperty()
-    readonly clasificacion_espacio_id: string;
+    readonly clasificacion_espacio_id: number;  //pk sql
 
     @ApiProperty()
     readonly espacios_requeridos: Object;
@@ -36,7 +38,7 @@ export class Espacio_academicoDto{
     readonly inscritos: number;
 
     @ApiProperty()
-    readonly docente_id: string;
+    readonly docente_id: number;    //pk sql
 
     @ApiProperty()
     readonly horario_id: string;
