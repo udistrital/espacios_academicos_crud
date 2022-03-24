@@ -10,7 +10,7 @@ API CRUD desarrollada en NestJS para la gestión de base de datos no relacional 
 * [NestJS](https://github.com/nestjs/nest)
 * [MongoDB](https://github.com/mongodb/mongo)
 
-**Entorno Local:** NodeJS Version: v17.3.0 | NPM Version: 8.4.1 | Nest CLI Version: 8.2.0 | MongoDB version: v5.0.6
+**Entorno Local:** NodeJS Version: v16.5.0 | NPM Version: 7.19.1 | Nest CLI Version: 8.2.0 | MongoDB version: v5.0.6
 
 ## Variables de Entorno
 
@@ -60,11 +60,11 @@ Pruebas unitarias
 
 | Develop | Relese 0.0.1 | Master |
 | -- | -- | -- |
-| [![Build Status]()]() | [![Build Status]()]() | [![Build Status]()]() |
+| [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/espacios_academicos_crud/status.svg?ref=refs/heads/develop)](https://hubci.portaloas.udistrital.edu.co/udistrital/espacios_academicos_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/espacios_academicos_crud/status.svg?ref=refs/heads/release/0.0.1)](https://hubci.portaloas.udistrital.edu.co/udistrital/espacios_academicos_crud) | [![Build Status](https://hubci.portaloas.udistrital.edu.co/api/badges/udistrital/espacios_academicos_crud/status.svg)](https://hubci.portaloas.udistrital.edu.co/udistrital/espacios_academicos_crud) |
 
 # Modelo de Datos
 
-![Modelo de datos Espacios academicos](/database/espacios_academicos_final.png)
+![Modelo de datos Espacios academicos](/database/espacios_academicos_v2.png)
 
 # Licencia
 
