@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { EspacioAcademicoModule } from './espacio-academico/espacio-academico.module';
 import { environment } from './config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
+import { EspacioAcademicoEstudiantesModule } from './espacio-academico-estudiantes/espacio-academico-estudiantes.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { MongooseModule } from '@nestjs/mongoose';
     `${environment.HOST}:${environment.PORT}/${environment.DB}?authSource=${environment.AUTH_DB}`, {
       useFindAndModify: false
     }),
-    EspacioAcademicoModule
+    EspacioAcademicoModule,
+    EspacioAcademicoEstudiantesModule
   ],
   controllers: [AppController],
   providers: [AppService],
