@@ -43,8 +43,8 @@ export class Espacio_academico extends Document {
     @Prop({required: true})
     horario_id: string
 
-    @Prop({required: true})
-    espacio_academico_padre: string
+    @Prop({type: Object})
+    espacio_academico_padre
     
     @Prop({required: true})
     activo: boolean
