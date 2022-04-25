@@ -36,6 +36,9 @@ export class Espacio_academico extends Document {
     
     @Prop({required: true})
     inscritos: number
+
+    @Prop({required: true})
+    periodo_id: number  //pk sql
     
     @Prop({required: true})
     docente_id: number  //pk sql

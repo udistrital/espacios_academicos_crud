@@ -38,6 +38,9 @@ export class Espacio_academicoDto{
     readonly inscritos: number;
 
     @ApiProperty()
+    readonly periodo_id: number;  //pk sql
+
+    @ApiProperty()
     readonly docente_id: number;    //pk sql
 
     @ApiProperty()
