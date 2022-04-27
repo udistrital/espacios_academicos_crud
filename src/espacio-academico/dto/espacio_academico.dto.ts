@@ -20,6 +20,9 @@ export class Espacio_academicoDto{
     readonly plan_estudio_id: string;
 
     @ApiProperty()
+    readonly proyecto_academico_id: number;     //pk sql
+
+    @ApiProperty()
     readonly creditos: number;
 
     @ApiProperty()
@@ -36,6 +39,9 @@ export class Espacio_academicoDto{
 
     @ApiProperty()
     readonly inscritos: number;
+
+    @ApiProperty()
+    readonly periodo_id: number;  //pk sql
 
     @ApiProperty()
     readonly docente_id: number;    //pk sql
