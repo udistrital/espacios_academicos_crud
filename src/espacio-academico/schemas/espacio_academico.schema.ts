@@ -18,6 +18,9 @@ export class Espacio_academico extends Document {
     
     @Prop({required: true})
     plan_estudio_id: string
+
+    @Prop({required: true})
+    proyecto_academico_id: number
     
     @Prop({required: true})
     creditos: number

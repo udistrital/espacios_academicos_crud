@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { Espacio_academico } from './schemas/espacio_academico.schema';
-import { Espacio_academicoDto } from './dto/espacio_acadmico.dto';
+import { Espacio_academicoDto } from './dto/espacio_academico.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
