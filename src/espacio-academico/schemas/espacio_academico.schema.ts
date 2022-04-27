@@ -18,6 +18,9 @@ export class Espacio_academico extends Document {
     
     @Prop({required: true})
     plan_estudio_id: string
+
+    @Prop({required: true})
+    proyecto_academico_id: number
     
     @Prop({required: true})
     creditos: number
@@ -36,6 +39,9 @@ export class Espacio_academico extends Document {
     
     @Prop({required: true})
     inscritos: number
+
+    @Prop({required: true})
+    periodo_id: number  //pk sql
     
     @Prop({required: true})
     docente_id: number  //pk sql
@@ -43,8 +49,8 @@ export class Espacio_academico extends Document {
     @Prop({required: true})
     horario_id: string
 
-    @Prop({required: true})
-    espacio_academico_padre: string
+    @Prop({type: Object})
+    espacio_academico_padre
     
     @Prop({required: true})
     activo: boolean

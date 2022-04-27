@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query, Res } from '@nestjs/common';
-import { Espacio_academicoDto } from './dto/espacio_acadmico.dto';
+import { Espacio_academicoDto } from './dto/espacio_academico.dto';
 import { EspacioAcademicoService } from './espacio-academico.service';
 
 import { FilterDto } from "../filters/dto/filter.dto";
