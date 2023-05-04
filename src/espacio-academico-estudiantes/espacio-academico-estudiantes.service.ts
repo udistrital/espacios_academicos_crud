@@ -55,7 +55,10 @@ export class EspacioAcademicoEstudiantesService {
             if(espacio_academico_estudiantesDto.espacio_academico_id != undefined){
                 await this.espacio_academicoModel.findById(espacio_academico_estudiantesDto.espacio_academico_id);
             }
-            espacio_academico_estudiantesDto.fecha_modificacion = new Date();
+            await this.espacio_academico_estudiantesModel.findById(id).then(espacio_academico_estudiantes => {
+                espacio_academico_estudiantesDto.fecha_creacion = espacio_academico_estudiantes.fecha_creacion;
+                espacio_academico_estudiantesDto.fecha_modificacion = new Date();
+            })
             await this.espacio_academico_estudiantesModel.findByIdAndUpdate(id, espacio_academico_estudiantesDto, {new: true}).exec();
             return await this.espacio_academico_estudiantesModel.findById(id).exec();
         }
