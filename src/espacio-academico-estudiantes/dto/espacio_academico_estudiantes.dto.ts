@@ -15,7 +15,7 @@ export class Espacio_academico_estudiantesDto{
     activo: boolean;
     
     @ApiProperty()
-    readonly fecha_creacion: Date;
+    fecha_creacion: Date;
 
     @ApiProperty()
     fecha_modificacion: Date;
