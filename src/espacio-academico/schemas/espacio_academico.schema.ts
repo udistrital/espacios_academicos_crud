@@ -8,9 +8,6 @@ export class Espacio_academico extends Document {
     nombre: string
 
     @Prop({required: true})
-    descripcion: string
-
-    @Prop({required: true})
     codigo_abreviacion: string
 
     @Prop({required: true})
@@ -29,7 +26,13 @@ export class Espacio_academico extends Document {
     distribucion_horas
 
     @Prop({required: true})
+    tipo_espacio_id: number    //pk sql
+
+    @Prop({required: true})
     clasificacion_espacio_id: number    //pk sql
+
+    @Prop({required: true})
+    enfoque_id: number    //pk sql
 
     @Prop({type: Object})
     espacios_requeridos
@@ -52,6 +55,15 @@ export class Espacio_academico extends Document {
     @Prop({type: Object})
     espacio_academico_padre
     
+    @Prop({type: Object})
+    soporte_documental
+
+    @Prop({type: Object})
+    estado_aprobacion_id
+
+    @Prop({required: true})
+    observacion: string
+
     @Prop({required: true})
     activo: boolean
 

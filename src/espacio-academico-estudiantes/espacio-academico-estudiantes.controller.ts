@@ -3,7 +3,9 @@ import { Espacio_academico_estudiantesDto } from './dto/espacio_academico_estudi
 import { EspacioAcademicoEstudiantesService } from './espacio-academico-estudiantes.service';
 
 import { FilterDto } from "../filters/dto/filter.dto";
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('espacio-academico-estudiantes')
 @Controller('espacio-academico-estudiantes')
 export class EspacioAcademicoEstudiantesController {
     constructor(private espacioAcademicoEstudiantesService: EspacioAcademicoEstudiantesService){}
@@ -99,7 +101,7 @@ export class EspacioAcademicoEstudiantesController {
             throw new HttpException({
                 Success: false,
                 Status: "404",
-                Message: "Error service Put: Request contains incorrect parameter",
+                Message: "Error service Delete: Request contains incorrect parameter",
                 Data: null
             }, HttpStatus.NOT_FOUND)
         }
