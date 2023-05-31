@@ -7,10 +7,14 @@ import { Model } from 'mongoose';
 
 import { FilterDto } from "../filters/dto/filter.dto";
 import { FiltersService } from "../filters/filters.service";
+import { Estado_aprobacion } from 'src/estado-aprobacion/schemas/estado_aprobacion.schema';
 
 @Injectable()
 export class EspacioAcademicoService {
-    constructor(@InjectModel(Espacio_academico.name) private readonly espacio_academicoModel: Model<Espacio_academico>){}
+    constructor (
+        @InjectModel(Espacio_academico.name) private readonly espacio_academicoModel: Model<Espacio_academico>,
+        @InjectModel(Estado_aprobacion.name) private readonly estado_aprobacionModel: Model<Estado_aprobacion>
+    ) {}
     
     async post(espacio_academicoDto: Espacio_academicoDto): Promise<Espacio_academico>{
         try{
@@ -18,8 +22,11 @@ export class EspacioAcademicoService {
             if(espacio_academico.espacio_academico_padre){
                 await this.espacio_academicoModel.findById(espacio_academico.espacio_academico_padre).exec();
             }
+            if(espacio_academico.estado_aprobacion_id){
+                await this.estado_aprobacionModel.findById(espacio_academico.estado_aprobacion_id).exec();
+            }
             espacio_academico.fecha_creacion = new Date();
-            espacio_academico.fecha_modificacion = new Date();
+            espacio_academico.fecha_modificacion = espacio_academico.fecha_creacion;
             return await espacio_academico.save();
         }
         catch(error){
@@ -45,6 +52,10 @@ export class EspacioAcademicoService {
                 var espacio_academico_padre = await this.espacio_academicoModel.findById(espacio_academico.espacio_academico_padre).exec();
                 espacio_academico.espacio_academico_padre = espacio_academico_padre;
             }
+            if(espacio_academico.estado_aprobacion_id){
+                const estado_aprobacion = await this.estado_aprobacionModel.findById(espacio_academico.estado_aprobacion_id).exec();
+                espacio_academico.estado_aprobacion_id = estado_aprobacion;
+            }
             return espacio_academico
         }
         catch(error){
@@ -56,6 +67,9 @@ export class EspacioAcademicoService {
         try{
             if(espacio_academicoDto.espacio_academico_padre != undefined){
                 await this.espacio_academicoModel.findById(espacio_academicoDto.espacio_academico_padre).exec();
+            }
+            if(espacio_academicoDto.estado_aprobacion_id != undefined){
+                await this.estado_aprobacionModel.findById(espacio_academicoDto.estado_aprobacion_id).exec();
             }
             await this.espacio_academicoModel.findById(id).then(espacio_academico => {
                 espacio_academicoDto.fecha_creacion = espacio_academico.fecha_creacion;

@@ -5,6 +5,7 @@ import { EspacioAcademicoModule } from './espacio-academico/espacio-academico.mo
 import { environment } from './config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EspacioAcademicoEstudiantesModule } from './espacio-academico-estudiantes/espacio-academico-estudiantes.module';
+import { EstadoAprobacionModule } from './estado-aprobacion/estado-aprobacion.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { EspacioAcademicoEstudiantesModule } from './espacio-academico-estudiant
       useFindAndModify: false
     }),
     EspacioAcademicoModule,
-    EspacioAcademicoEstudiantesModule
+    EspacioAcademicoEstudiantesModule,
+    EstadoAprobacionModule
   ],
   controllers: [AppController],
   providers: [AppService],

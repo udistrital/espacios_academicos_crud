@@ -6,9 +6,6 @@ export class Espacio_academicoDto{
 
     @ApiProperty()
     readonly nombre: string;
-
-    @ApiProperty()
-    readonly descripcion: string;
     
     @ApiProperty()
     readonly codigo_abreviacion: string;
@@ -29,7 +26,13 @@ export class Espacio_academicoDto{
     readonly distribucion_horas: Object;
 
     @ApiProperty()
+    readonly tipo_espacio_id: number;    //pk sql
+
+    @ApiProperty()
     readonly clasificacion_espacio_id: number;  //pk sql
+
+    @ApiProperty()
+    readonly enfoque_id: number;  //pk sql
 
     @ApiProperty()
     readonly espacios_requeridos: Object;
@@ -52,6 +55,15 @@ export class Espacio_academicoDto{
     @ApiProperty()
     readonly espacio_academico_padre: string;
     
+    @ApiProperty()
+    readonly soporte_documental: Object;
+
+    @ApiProperty()
+    readonly estado_aprobacion_id: string;
+
+    @ApiProperty()
+    readonly observacion: string;
+
     @ApiProperty()
     activo: boolean;
     
