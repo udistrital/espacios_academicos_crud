@@ -6,6 +6,9 @@ import { environment } from './config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EspacioAcademicoEstudiantesModule } from './espacio-academico-estudiantes/espacio-academico-estudiantes.module';
 import { EstadoAprobacionModule } from './estado-aprobacion/estado-aprobacion.module';
+import { EspacioAcademicoDocentesModule } from './espacio-academico-docentes/espacio-academico-docentes.module';
+import { AgrupacionEspaciosService } from './agrupacion-espacios/agrupacion-espacios.service';
+import { AgrupacionEspaciosModule } from './agrupacion-espacios/agrupacion-espacios.module';
 
 @Module({
   imports: [
@@ -15,7 +18,9 @@ import { EstadoAprobacionModule } from './estado-aprobacion/estado-aprobacion.mo
     }),
     EspacioAcademicoModule,
     EspacioAcademicoEstudiantesModule,
-    EstadoAprobacionModule
+    EstadoAprobacionModule,
+    EspacioAcademicoDocentesModule,
+    AgrupacionEspaciosModule
   ],
   controllers: [AppController],
   providers: [AppService],

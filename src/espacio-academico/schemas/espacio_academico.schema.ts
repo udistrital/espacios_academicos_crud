@@ -65,6 +65,12 @@ export class Espacio_academico extends Document {
     observacion: string
 
     @Prop({required: true})
+    readonly espacio_modular: boolean;
+
+    @Prop({required: true})
+    readonly agrupacion_espacios_id: string;
+
+    @Prop({required: true})
     activo: boolean
 
     @Prop({required: true})

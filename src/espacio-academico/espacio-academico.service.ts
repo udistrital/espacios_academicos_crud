@@ -8,12 +8,14 @@ import { Model } from 'mongoose';
 import { FilterDto } from "../filters/dto/filter.dto";
 import { FiltersService } from "../filters/filters.service";
 import { Estado_aprobacion } from 'src/estado-aprobacion/schemas/estado_aprobacion.schema';
+import { Agrupacion_espacios } from 'src/agrupacion-espacios/schema/agrupacion-espacios.schema';
 
 @Injectable()
 export class EspacioAcademicoService {
     constructor (
         @InjectModel(Espacio_academico.name) private readonly espacio_academicoModel: Model<Espacio_academico>,
-        @InjectModel(Estado_aprobacion.name) private readonly estado_aprobacionModel: Model<Estado_aprobacion>
+        @InjectModel(Estado_aprobacion.name) private readonly estado_aprobacionModel: Model<Estado_aprobacion>,
+        @InjectModel(Agrupacion_espacios.name) private readonly agrupacion_espaciosModel: Model<Agrupacion_espacios>
     ) {}
     
     async post(espacio_academicoDto: Espacio_academicoDto): Promise<Espacio_academico>{
@@ -24,6 +26,9 @@ export class EspacioAcademicoService {
             }
             if(espacio_academico.estado_aprobacion_id){
                 await this.estado_aprobacionModel.findById(espacio_academico.estado_aprobacion_id).exec();
+            }
+            if(espacio_academico.agrupacion_espacios_id){
+                await this.agrupacion_espaciosModel.findById(espacio_academico.agrupacion_espacios_id).exec();
             }
             espacio_academico.fecha_creacion = new Date();
             espacio_academico.fecha_modificacion = espacio_academico.fecha_creacion;
@@ -70,6 +75,9 @@ export class EspacioAcademicoService {
             }
             if(espacio_academicoDto.estado_aprobacion_id != undefined){
                 await this.estado_aprobacionModel.findById(espacio_academicoDto.estado_aprobacion_id).exec();
+            }
+            if(espacio_academicoDto.agrupacion_espacios_id != undefined){
+                await this.agrupacion_espaciosModel.findById(espacio_academicoDto.agrupacion_espacios_id).exec();
             }
             await this.espacio_academicoModel.findById(id).then(espacio_academico => {
                 espacio_academicoDto.fecha_creacion = espacio_academico.fecha_creacion;

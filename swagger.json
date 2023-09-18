@@ -536,6 +536,356 @@
                     "estado-aprobacion"
                 ]
             }
+        },
+        "/espacio-academico-docentes": {
+            "post": {
+                "operationId": "EspacioAcademicoDocentesController_post",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Espacio_academico_docentesDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "espacio-academico-docentes"
+                ]
+            },
+            "get": {
+                "operationId": "EspacioAcademicoDocentesController_getAll",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "required": false,
+                        "in": "query",
+                        "description": "query - Filter. e.g. col1:v1,col2:v2 …",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fields",
+                        "required": false,
+                        "in": "query",
+                        "description": "fields - Fields returned. e.g. col1,col2 …",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortby",
+                        "required": false,
+                        "in": "query",
+                        "description": "sortby - Sorted-by fields. e.g. col1,col2 …",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "order",
+                        "required": false,
+                        "in": "query",
+                        "description": "order - Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc …",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "limit - Limit the size of result set. Must be an integer",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "required": false,
+                        "in": "query",
+                        "description": "offset - Start position of result set. Must be an integer",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "populate",
+                        "required": false,
+                        "in": "query",
+                        "description": "populate - show subqueries. Must be a boolean",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "espacio-academico-docentes"
+                ]
+            },
+            "put": {
+                "operationId": "EspacioAcademicoDocentesController_put",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Espacio_academico_docentesDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "espacio-academico-docentes"
+                ]
+            }
+        },
+        "/espacio-academico-docentes/{id}": {
+            "get": {
+                "operationId": "EspacioAcademicoDocentesController_getById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "espacio-academico-docentes"
+                ]
+            },
+            "delete": {
+                "operationId": "EspacioAcademicoDocentesController_delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "espacio-academico-docentes"
+                ]
+            }
+        },
+        "/agrupacion-espacios": {
+            "post": {
+                "operationId": "AgrupacionEspaciosController_post",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Agrupacion_espaciosDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "agrupacion-espacios"
+                ]
+            },
+            "get": {
+                "operationId": "AgrupacionEspaciosController_getAll",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "required": false,
+                        "in": "query",
+                        "description": "query - Filter. e.g. col1:v1,col2:v2 …",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "fields",
+                        "required": false,
+                        "in": "query",
+                        "description": "fields - Fields returned. e.g. col1,col2 …",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sortby",
+                        "required": false,
+                        "in": "query",
+                        "description": "sortby - Sorted-by fields. e.g. col1,col2 …",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "order",
+                        "required": false,
+                        "in": "query",
+                        "description": "order - Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc …",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "limit - Limit the size of result set. Must be an integer",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "required": false,
+                        "in": "query",
+                        "description": "offset - Start position of result set. Must be an integer",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "populate",
+                        "required": false,
+                        "in": "query",
+                        "description": "populate - show subqueries. Must be a boolean",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "agrupacion-espacios"
+                ]
+            }
+        },
+        "/agrupacion-espacios/{id}": {
+            "get": {
+                "operationId": "AgrupacionEspaciosController_getByID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "agrupacion-espacios"
+                ]
+            },
+            "put": {
+                "operationId": "AgrupacionEspaciosController_put",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Agrupacion_espaciosDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "agrupacion-espacios"
+                ]
+            },
+            "delete": {
+                "operationId": "AgrupacionEspaciosController_delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "agrupacion-espacios"
+                ]
+            }
         }
     },
     "info": {
@@ -616,6 +966,12 @@
                     "observacion": {
                         "type": "string"
                     },
+                    "espacio_modular": {
+                        "type": "boolean"
+                    },
+                    "agrupacion_espacios_id": {
+                        "type": "string"
+                    },
                     "activo": {
                         "type": "boolean"
                     },
@@ -649,6 +1005,8 @@
                     "soporte_documental",
                     "estado_aprobacion_id",
                     "observacion",
+                    "espacio_modular",
+                    "agrupacion_espacios_id",
                     "activo",
                     "fecha_creacion",
                     "fecha_modificacion"
@@ -715,6 +1073,80 @@
                     "nombre",
                     "descripcion",
                     "codigo_abreviacion",
+                    "activo",
+                    "fecha_creacion",
+                    "fecha_modificacion"
+                ]
+            },
+            "Espacio_academico_docentesDto": {
+                "type": "object",
+                "properties": {
+                    "espacio_academico_id": {
+                        "type": "string"
+                    },
+                    "docente_id": {
+                        "type": "number"
+                    },
+                    "periodo_id": {
+                        "type": "number"
+                    },
+                    "activo": {
+                        "type": "boolean"
+                    },
+                    "fecha_creacion": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "fecha_modificacion": {
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "espacio_academico_id",
+                    "docente_id",
+                    "periodo_id",
+                    "activo",
+                    "fecha_creacion",
+                    "fecha_modificacion"
+                ]
+            },
+            "Agrupacion_espaciosDto": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string"
+                    },
+                    "codigo_abreviacion": {
+                        "type": "string"
+                    },
+                    "descripcion": {
+                        "type": "string"
+                    },
+                    "facultad_id": {
+                        "type": "number"
+                    },
+                    "color_hex": {
+                        "type": "string"
+                    },
+                    "activo": {
+                        "type": "boolean"
+                    },
+                    "fecha_creacion": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "fecha_modificacion": {
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "nombre",
+                    "codigo_abreviacion",
+                    "descripcion",
+                    "facultad_id",
+                    "color_hex",
                     "activo",
                     "fecha_creacion",
                     "fecha_modificacion"
