@@ -65,6 +65,12 @@ export class Espacio_academicoDto{
     readonly observacion: string;
 
     @ApiProperty()
+    readonly espacio_modular: boolean;
+
+    @ApiProperty()
+    readonly agrupacion_espacios_id: string;
+
+    @ApiProperty()
     activo: boolean;
     
     @ApiProperty()

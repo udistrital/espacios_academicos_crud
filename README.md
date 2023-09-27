@@ -64,7 +64,7 @@ Pruebas unitarias
 
 # Modelo de Datos
 
-![Modelo de datos Espacios academicos](/database/espacios_academicos_v5.png)
+![Modelo de datos Espacios academicos](/database/espacios_academicos_v6.png)
 
 # Licencia
 
