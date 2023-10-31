@@ -68,6 +68,9 @@ export class Espacio_academicoDto{
     readonly espacio_modular: boolean;
 
     @ApiProperty()
+    readonly lista_modular_docentes: number[];
+
+    @ApiProperty()
     readonly agrupacion_espacios_id: string;
 
     @ApiProperty()
