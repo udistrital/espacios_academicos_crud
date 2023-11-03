@@ -41,6 +41,13 @@ export class FiltersService {
                     case "inarray":
                         queryObj[key[0]] = { $in: [castValue(tup[1])] }
                         break;
+                    case "isnull":
+                        if (tup[1].toLowerCase() === 'true') {
+                            queryObj[key[0]] = null;    
+                        } else {
+                            queryObj[key[0]] = { $ne: null }
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -108,23 +115,27 @@ export class FiltersService {
 }
 
 function castValue(value: string): any {
-    const datatype = value.match(/<[^>]+>/);
-    if (datatype === null) {
-        return value;
-    } else {
-        const val = value.slice(0, value.length-3)
-        switch (datatype[0][1]) {
-            case 'n':
-                return Number(val);
-                break;
-            case 'd':
-                return new Date(val);
-                break;
-            case 'b':
-                return value.toLowerCase() === 'true';
-                break;
-            default:
-                break;
+    if (value) {
+        const datatype = value.match(/<[^>]+>/);
+        if (datatype === null) {
+            return value;
+        } else {
+            const val = value.slice(0, value.length-3)
+            switch (datatype[0][1]) {
+                case 'n':
+                    return Number(val);
+                    break;
+                case 'd':
+                    return new Date(val);
+                    break;
+                case 'b':
+                    return value.toLowerCase() === 'true';
+                    break;
+                default:
+                    break;
+            }
         }
+    } else {
+        return null;
     }
 }
