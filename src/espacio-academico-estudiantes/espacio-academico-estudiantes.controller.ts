@@ -32,25 +32,25 @@ export class EspacioAcademicoEstudiantesController {
     }
 
     @Get()
-    async getAll(@Res() res, @Query() filterDto: FilterDto){
-        const espacio_academico_estudiantes = await this.espacioAcademicoEstudiantesService.getAll(filterDto);
-        if(!espacio_academico_estudiantes || espacio_academico_estudiantes.length == 0){
-            throw new HttpException({
-                Success: false,
-                Status: "404",
-                Message: "Error service GetAll: The request contains an incorrect parameter or no record exist",
-                Data: null
-            }, HttpStatus.NOT_FOUND)
-        }
-        res.status(HttpStatus.OK).json(
-            {
+    async getAll(@Res() res, @Query() filterDto: FilterDto) {
+        try {
+            const espacioAcademicoEstudiantes = await this.espacioAcademicoEstudiantesService.getAll(filterDto);
+            res.status(HttpStatus.OK).json({
                 Success: true,
                 Status: "200",
                 Message: "Request successful",
-                Data: espacio_academico_estudiantes
-            }
-        );
+                Data: espacioAcademicoEstudiantes || []
+            });
+        } catch (error) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                Success: false,
+                Status: "500",
+                Message: "An unexpected error occurred",
+                Data: null
+            });
+        }
     }
+    
 
     @Get('/:id')
     async getById(@Res() res, @Param('id') id: string){
