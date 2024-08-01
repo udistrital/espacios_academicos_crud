@@ -9,12 +9,12 @@ import { FilterDto } from 'src/filters/dto/filter.dto';
 export class AgrupacionEspaciosController {
     constructor(
         private agrupacionEspaciosService: AgrupacionEspaciosService
-    ) {}
+    ) { }
 
     @Post()
     async post(@Res() res, @Body() agrupacion_espaciosDto: Agrupacion_espaciosDto) {
         const agrupacion_espacios = await this.agrupacionEspaciosService.post(agrupacion_espaciosDto);
-        if(!agrupacion_espacios) {
+        if (!agrupacion_espacios) {
             throw new HttpException({
                 Success: false,
                 Status: "400",
@@ -32,27 +32,28 @@ export class AgrupacionEspaciosController {
 
     @Get()
     async getAll(@Res() res, @Query() filterDto: FilterDto) {
-        const agrupacion_espacios = await this.agrupacionEspaciosService.getAll(filterDto);
-        if(!agrupacion_espacios || agrupacion_espacios.length == 0) {
-            throw new HttpException({
+        try {
+            const agrupacionEspacios = await this.agrupacionEspaciosService.getAll(filterDto);
+            res.status(HttpStatus.OK).json({
+                Success: true,
+                Status: "200",
+                Message: "Request successful",
+                Data: agrupacionEspacios || [] 
+            });
+        } catch (error) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
                 Success: false,
-                Status: "404",
-                Message: "Error service GetAll: The request contains an incorrect parameter or no record exist",
+                Status: "500",
+                Message: "An unexpected error occurred",
                 Data: null
-            }, HttpStatus.NOT_FOUND)
+            });
         }
-        res.status(HttpStatus.OK).json({
-            Success: true,
-            Status: "200",
-            Message: "Request successful",
-            Data: agrupacion_espacios
-        });
     }
 
     @Get('/:id')
     async getByID(@Res() res, @Param('id') id: string) {
         const agrupacion_espacios = await this.agrupacionEspaciosService.getById(id);
-        if(!agrupacion_espacios) {
+        if (!agrupacion_espacios) {
             throw new HttpException({
                 Success: false,
                 Status: "404",
@@ -71,7 +72,7 @@ export class AgrupacionEspaciosController {
     @Put('/:id')
     async put(@Res() res, @Param('id') id: string, @Body() agrupacion_espaciosDto: Agrupacion_espaciosDto) {
         const agrupacion_espacios = await this.agrupacionEspaciosService.put(id, agrupacion_espaciosDto);
-        if(!agrupacion_espacios) {
+        if (!agrupacion_espacios) {
             throw new HttpException({
                 Success: false,
                 Status: "400",
@@ -90,7 +91,7 @@ export class AgrupacionEspaciosController {
     @Delete('/:id')
     async delete(@Res() res, @Param('id') id: string) {
         const agrupacion_espacios = await this.agrupacionEspaciosService.delete(id);
-        if(!agrupacion_espacios) {
+        if (!agrupacion_espacios) {
             throw new HttpException({
                 Sucess: false,
                 Status: "404",

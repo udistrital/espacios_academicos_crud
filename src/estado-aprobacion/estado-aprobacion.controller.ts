@@ -9,12 +9,12 @@ import { ApiTags } from '@nestjs/swagger';
 export class EstadoAprobacionController {
     constructor(
         private estadoAprobacionService: EstadoAprobacionService
-    ) {}
+    ) { }
 
     @Post()
     async post(@Res() res, @Body() estado_aprobacionDto: Estado_aprobacionDto) {
         const estado_aprobacion = await this.estadoAprobacionService.post(estado_aprobacionDto);
-        if(!estado_aprobacion) {
+        if (!estado_aprobacion) {
             throw new HttpException({
                 Success: false,
                 Status: "400",
@@ -32,27 +32,29 @@ export class EstadoAprobacionController {
 
     @Get()
     async getAll(@Res() res, @Query() filterDto: FilterDto) {
-        const estado_aprobacion = await this.estadoAprobacionService.getAll(filterDto);
-        if(!estado_aprobacion || estado_aprobacion.length == 0) {
-            throw new HttpException({
+        try {
+            const estadoAprobacion = await this.estadoAprobacionService.getAll(filterDto);
+            res.status(HttpStatus.OK).json({
+                Success: true,
+                Status: "200",
+                Message: "Request successful",
+                Data: estadoAprobacion || []
+            });
+        } catch (error) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
                 Success: false,
-                Status: "404",
-                Message: "Error service GetAll: The request contains an incorrect parameter or no record exist",
+                Status: "500",
+                Message: "An unexpected error occurred",
                 Data: null
-            }, HttpStatus.NOT_FOUND)
+            });
         }
-        res.status(HttpStatus.OK).json({
-            Success: true,
-            Status: "200",
-            Message: "Request successful",
-            Data: estado_aprobacion
-        });
     }
+
 
     @Get('/:id')
     async getById(@Res() res, @Param('id') id: string) {
         const estado_aprobacion = await this.estadoAprobacionService.getById(id);
-        if(!estado_aprobacion) {
+        if (!estado_aprobacion) {
             throw new HttpException({
                 Success: false,
                 Status: "404",
@@ -71,7 +73,7 @@ export class EstadoAprobacionController {
     @Put('/:id')
     async put(@Res() res, @Param('id') id: string, @Body() estado_aprobacionDto: Estado_aprobacionDto) {
         const estado_aprobacion = await this.estadoAprobacionService.put(id, estado_aprobacionDto);
-        if(!estado_aprobacion) {
+        if (!estado_aprobacion) {
             throw new HttpException({
                 Success: false,
                 Status: "400",
@@ -90,7 +92,7 @@ export class EstadoAprobacionController {
     @Delete('/:id')
     async delete(@Res() res, @Param('id') id: string) {
         const estado_aprobacion = await this.estadoAprobacionService.delete(id);
-        if(!estado_aprobacion) {
+        if (!estado_aprobacion) {
             throw new HttpException({
                 Sucess: false,
                 Status: "404",

@@ -8,12 +8,12 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('espacio-academico')
 @Controller('espacio-academico')
 export class EspacioAcademicoController {
-    constructor(private espacioAcademicoService: EspacioAcademicoService){}
+    constructor(private espacioAcademicoService: EspacioAcademicoService) { }
 
     @Post()
-    async post(@Res() res, @Body() espacio_academicoDto: Espacio_academicoDto){
+    async post(@Res() res, @Body() espacio_academicoDto: Espacio_academicoDto) {
         const espacio_academico = await this.espacioAcademicoService.post(espacio_academicoDto);
-        if(!espacio_academico){
+        if (!espacio_academico) {
             throw new HttpException({
                 Success: false,
                 Status: "400",
@@ -32,30 +32,31 @@ export class EspacioAcademicoController {
     }
 
     @Get()
-    async getAll(@Res() res, @Query() filterDto: FilterDto){
-        const espacio_academico = await this.espacioAcademicoService.getAll(filterDto);
-        if(!espacio_academico || espacio_academico.length == 0){
-            throw new HttpException({
-                Success: false,
-                Status: "404",
-                Message: "Error service GetAll: The request contains an incorrect parameter or no record exist",
-                Data: null
-            }, HttpStatus.NOT_FOUND)
-        }
-        res.status(HttpStatus.OK).json(
-            {
+    async getAll(@Res() res, @Query() filterDto: FilterDto) {
+        try {
+            const espacioAcademico = await this.espacioAcademicoService.getAll(filterDto);
+            res.status(HttpStatus.OK).json({
                 Success: true,
                 Status: "200",
                 Message: "Request successful",
-                Data: espacio_academico
-            }
-        );
+                Data: espacioAcademico || []
+            });
+        } catch (error) {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                Success: false,
+                Status: "500",
+                Message: "An unexpected error occurred",
+                Data: null
+            });
+        }
     }
 
+
+
     @Get('/:id')
-    async getById(@Res() res, @Param('id') id: string){
+    async getById(@Res() res, @Param('id') id: string) {
         const espacio_academico = await this.espacioAcademicoService.getById(id);
-        if(!espacio_academico){
+        if (!espacio_academico) {
             throw new HttpException({
                 Success: false,
                 Status: "404",
@@ -74,9 +75,9 @@ export class EspacioAcademicoController {
     }
 
     @Put('/:id')
-    async put(@Res() res, @Param('id') id: string, @Body() espacio_academicoDto: Espacio_academicoDto){
+    async put(@Res() res, @Param('id') id: string, @Body() espacio_academicoDto: Espacio_academicoDto) {
         const espacio_academico = await this.espacioAcademicoService.put(id, espacio_academicoDto);
-        if(!espacio_academico){
+        if (!espacio_academico) {
             throw new HttpException({
                 Success: false,
                 Status: "400",
@@ -95,9 +96,9 @@ export class EspacioAcademicoController {
     }
 
     @Delete('/:id')
-    async delete(@Res() res, @Param('id') id: string){
+    async delete(@Res() res, @Param('id') id: string) {
         const espacio_academico = await this.espacioAcademicoService.delete(id);
-        if(!espacio_academico){
+        if (!espacio_academico) {
             throw new HttpException({
                 Success: false,
                 Status: "404",
