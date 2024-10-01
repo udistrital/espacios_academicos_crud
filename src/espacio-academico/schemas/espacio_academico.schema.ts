@@ -1,86 +1,86 @@
-import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-@Schema({collection: 'espacio_academico'})
+@Schema({ collection: 'espacio_academico' })
 export class Espacio_academico extends Document {
+  @Prop({ required: true })
+  nombre: string;
 
-    @Prop({required: true})
-    nombre: string
+  @Prop({ required: true })
+  codigo_abreviacion: string;
 
-    @Prop({required: true})
-    codigo_abreviacion: string
+  @Prop({ required: true })
+  codigo: string;
 
-    @Prop({required: true})
-    codigo: string
-    
-    @Prop({required: true})
-    plan_estudio_id: string
+  @Prop({ required: true })
+  plan_estudio_id: string;
 
-    @Prop({required: true})
-    proyecto_academico_id: number
-    
-    @Prop({required: true})
-    creditos: number
+  @Prop({ required: true })
+  proyecto_academico_id: number;
 
-    @Prop({type: Object})
-    distribucion_horas
+  @Prop({ required: true })
+  creditos: number;
 
-    @Prop({required: true})
-    tipo_espacio_id: number    //pk sql
+  @Prop({ type: Object })
+  distribucion_horas;
 
-    @Prop({required: true})
-    clasificacion_espacio_id: number    //pk sql
+  @Prop({ required: true })
+  tipo_espacio_id: number; //pk sql
 
-    @Prop({required: true})
-    enfoque_id: number    //pk sql
+  @Prop({ required: true })
+  clasificacion_espacio_id: number; //pk sql
 
-    @Prop({type: Object})
-    espacios_requeridos
-    
-    @Prop({required: true})
-    grupo: string
-    
-    @Prop({required: true})
-    inscritos: number
+  @Prop({ required: true })
+  enfoque_id: number; //pk sql
 
-    @Prop({required: true})
-    periodo_id: number  //pk sql
-    
-    @Prop({required: true})
-    docente_id: number  //pk sql
-    
-    @Prop({required: true})
-    horario_id: string
+  @Prop({ type: Object })
+  espacios_requeridos;
 
-    @Prop({type: Object})
-    espacio_academico_padre
-    
-    @Prop({type: Object})
-    soporte_documental
+  @Prop({ required: true })
+  grupo: string;
 
-    @Prop({type: Object})
-    estado_aprobacion_id
+  @Prop({ required: true })
+  inscritos: number;
 
-    @Prop({required: true})
-    observacion: string
+  @Prop({ required: true })
+  periodo_id: number; //pk sql
 
-    @Prop({required: true})
-    readonly espacio_modular: boolean;
+  @Prop({ required: true })
+  docente_id: number; //pk sql
 
-    @Prop({required: false})
-    readonly lista_modular_docentes: number[];
+  @Prop({ required: false })
+  grupo_estudio_id: string;
 
-    @Prop({required: true})
-    readonly agrupacion_espacios_id: string;
+  @Prop({ type: Object })
+  espacio_academico_padre;
 
-    @Prop({required: true})
-    activo: boolean
+  @Prop({ type: Object })
+  soporte_documental;
 
-    @Prop({required: true})
-    fecha_creacion: Date
+  @Prop({ type: Object })
+  estado_aprobacion_id;
 
-    @Prop({required: true})
-    fecha_modificacion: Date
+  @Prop({ required: true })
+  observacion: string;
+
+  @Prop({ required: true })
+  readonly espacio_modular: boolean;
+
+  @Prop({ required: false })
+  readonly lista_modular_docentes: number[];
+
+  @Prop({ required: true })
+  readonly agrupacion_espacios_id: string;
+
+  @Prop({ required: true })
+  activo: boolean;
+
+  @Prop({ required: true })
+  fecha_creacion: Date;
+
+  @Prop({ required: true })
+  fecha_modificacion: Date;
 }
 
-export const Espacio_academicoSchema = SchemaFactory.createForClass(Espacio_academico);
+export const Espacio_academicoSchema =
+  SchemaFactory.createForClass(Espacio_academico);
