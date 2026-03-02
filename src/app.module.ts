@@ -7,9 +7,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { EspacioAcademicoEstudiantesModule } from './espacio-academico-estudiantes/espacio-academico-estudiantes.module';
 import { EstadoAprobacionModule } from './estado-aprobacion/estado-aprobacion.module';
 import { AgrupacionEspaciosModule } from './agrupacion-espacios/agrupacion-espacios.module';
+import { ParameterStoreModule } from './config/paramter_store.module';
 
 @Module({
   imports: [
+    ParameterStoreModule,
     MongooseModule.forRoot(`mongodb://${environment.USER}:${environment.PASS}@`+
     `${environment.HOST}:${environment.PORT}/${environment.DB}?authSource=${environment.AUTH_DB}`, {
       useFindAndModify: false
