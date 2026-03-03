@@ -776,7 +776,7 @@
                     "docente_id": {
                         "type": "number"
                     },
-                    "horario_id": {
+                    "grupo_estudio_id": {
                         "type": "string"
                     },
                     "espacio_academico_padre": {
@@ -831,7 +831,7 @@
                     "inscritos",
                     "periodo_id",
                     "docente_id",
-                    "horario_id",
+                    "grupo_estudio_id",
                     "espacio_academico_padre",
                     "soporte_documental",
                     "estado_aprobacion_id",
