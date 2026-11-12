@@ -1,3 +1,8 @@
+// Debe ser el primer import: carga el .env (si existe) en process.env antes de
+// que se evalúe config/configuration.ts. En despliegue no hay .env en la imagen,
+// así que no tiene efecto y las variables vienen de la task definition.
+// dotenv no sobrescribe variables que ya estén definidas en el entorno.
+import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { environment } from './config/configuration';
