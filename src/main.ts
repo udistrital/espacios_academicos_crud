@@ -18,7 +18,7 @@ async function loadSsmParameters() {
   // Volver a process.env.PARAMETER_STORE cuando la task definition lo defina.
   const prefix = 'preprod';
   const userParam = `/${prefix}/espacios_academicos_mongo_crud/db/username`;
-  const passParam = `/${prefix}/espacios_academico_notas_mongo_crud/db/password`;
+  const passParam = `/${prefix}/espacios_academicos_mongo_crud/db/password`;
 
   console.log(
     `Cargando parámetros SSM (región ${process.env.AWS_REGION || 'us-east-1'}): ${userParam}, ${passParam}`,
