@@ -18,14 +18,14 @@ async function bootstrap() {
     }
 
     try {
-      process.env.HORARIOS_CRUD_USER =
+      process.env.ESPACIOS_ACADEMICOS_CRUD_USER =
         await parameterStoreService.getParameter(
-          `/${prefix}/horarios_mongo_crud/db/username`,
+          `/${prefix}/espacios_academicos_crud/db/username`,
         );
 
-      process.env.HORARIOS_CRUD_PASS =
+      process.env.ESPACIOS_ACADEMICOS_CRUD_PASS =
         await parameterStoreService.getParameter(
-          `/${prefix}/horarios_mongo_crud/db/password`,
+          `/${prefix}/espacios_academicos_crud/db/password`,
         );
 
       console.log('Parámetros cargados desde AWS SSM');
