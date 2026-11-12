@@ -10,7 +10,8 @@ import * as fs from 'fs';
 // porque NestFactory.create inicializa la conexión a Mongo.
 async function loadSsmParameters() {
   const parameterStoreService = new ParameterStoreService();
-  const prefix = process.env.PARAMETER_STORE;
+  //const prefix = process.env.PARAMETER_STORE;
+  const prefix = "preprod"
 
   if (environment.RUNMODE !== 'dev') {
     if (!prefix) {
