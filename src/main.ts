@@ -6,10 +6,10 @@ import helmet from 'helmet';     // related security headers
 import { ParameterStoreService } from './config/parameter_store.service';
 import * as fs from 'fs';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
-  const parameterStoreService = app.get(ParameterStoreService);
+// Carga las credenciales de la BD desde AWS SSM ANTES de crear la app,
+// porque NestFactory.create inicializa la conexión a Mongo.
+async function loadSsmParameters() {
+  const parameterStoreService = new ParameterStoreService();
   const prefix = process.env.PARAMETER_STORE;
 
   if (environment.RUNMODE !== 'dev') {
@@ -34,6 +34,12 @@ async function bootstrap() {
       process.exit(1);
     }
   }
+}
+
+async function bootstrap() {
+  await loadSsmParameters();
+
+  const app = await NestFactory.create(AppModule);
 
   app.use(helmet());
 
