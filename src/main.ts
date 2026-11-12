@@ -9,31 +9,36 @@ import * as fs from 'fs';
 // Carga las credenciales de la BD desde AWS SSM ANTES de crear la app,
 // porque NestFactory.create inicializa la conexión a Mongo.
 async function loadSsmParameters() {
+  if (environment.RUNMODE === 'dev') {
+    return;
+  }
+
   const parameterStoreService = new ParameterStoreService();
-  //const prefix = process.env.PARAMETER_STORE;
-  const prefix = "preprod"
+  // TEMPORAL: prefijo quemado en preprod para el ambiente de pruebas.
+  // Volver a process.env.PARAMETER_STORE cuando la task definition lo defina.
+  const prefix = 'preprod';
+  const userParam = `/${prefix}/espacios_academicos_crud/db/username`;
+  const passParam = `/${prefix}/espacios_academicos_crud/db/password`;
 
-  if (environment.RUNMODE !== 'dev') {
-    if (!prefix) {
-      throw new Error('PARAMETER_STORE no definido');
-    }
+  console.log(
+    `Cargando parámetros SSM (región ${process.env.AWS_REGION || 'us-east-1'}): ${userParam}, ${passParam}`,
+  );
 
-    try {
-      process.env.ESPACIOS_ACADEMICOS_CRUD_USER =
-        await parameterStoreService.getParameter(
-          `/${prefix}/espacios_academicos_crud/db/username`,
-        );
+  let current = userParam;
+  try {
+    process.env.ESPACIOS_ACADEMICOS_CRUD_USER =
+      await parameterStoreService.getParameter(userParam);
 
-      process.env.ESPACIOS_ACADEMICOS_CRUD_PASS =
-        await parameterStoreService.getParameter(
-          `/${prefix}/espacios_academicos_crud/db/password`,
-        );
+    current = passParam;
+    process.env.ESPACIOS_ACADEMICOS_CRUD_PASS =
+      await parameterStoreService.getParameter(passParam);
 
-      console.log('Parámetros cargados desde AWS SSM');
-    } catch (error) {
-      console.error('Error cargando parámetros desde SSM', error);
-      process.exit(1);
-    }
+    console.log('Parámetros cargados desde AWS SSM');
+  } catch (error: any) {
+    console.error(
+      `Error cargando el parámetro "${current}" desde SSM: ${error?.name ?? ''} ${error?.message ?? ''}`,
+    );
+    process.exit(1);
   }
 }
 
