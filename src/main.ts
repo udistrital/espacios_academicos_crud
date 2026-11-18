@@ -1,3 +1,8 @@
+// Debe ser el primer import: carga el .env (si existe) en process.env antes de
+// que se evalúe config/configuration.ts. En despliegue no hay .env en la imagen,
+// así que no tiene efecto y las variables vienen de la task definition.
+// dotenv no sobrescribe variables que ya estén definidas en el entorno.
+import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { environment } from './config/configuration';
@@ -9,7 +14,14 @@ import * as fs from 'fs';
 // Carga las credenciales de la BD desde AWS SSM ANTES de crear la app,
 // porque NestFactory.create inicializa la conexión a Mongo.
 async function loadSsmParameters() {
-  if (environment.RUNMODE === 'dev') {
+  // En dev se omite SSM solo si las credenciales ya vienen definidas
+  // (ej. .env en local). En pruebas RUNMODE=dev pero las credenciales
+  // no están en la task definition, así que se siguen leyendo de SSM.
+  const hasCredentials =
+    !!process.env.ESPACIOS_ACADEMICOS_CRUD_USER &&
+    !!process.env.ESPACIOS_ACADEMICOS_CRUD_PASS;
+  if (environment.RUNMODE === 'dev' && hasCredentials) {
+    console.log('RUNMODE=dev con credenciales en el entorno: se omite SSM');
     return;
   }
 
